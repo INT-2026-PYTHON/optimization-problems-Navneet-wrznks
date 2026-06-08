@@ -87,3 +87,26 @@ O(1) time, giving an overall O(n) algorithm.
 =================================================
 
 """
+def two_sum_brute(nums, target):
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] + nums[j] == target:
+                return (i, j)
+    return None
+
+def two_sum_fast(nums, target):
+    num_dict = {}
+    for i in range(len(nums)):
+        complement = target - nums[i]
+        if complement in num_dict:
+            return (num_dict[complement], i)
+        num_dict[nums[i]] = i
+    return None
+
+#Input Example 1
+nums   = [2, 7, 11, 15]
+target = 9
+print("Brute Force:", two_sum_brute(nums, target))
+print("Optimized:  ", two_sum_fast(nums, target))
+
